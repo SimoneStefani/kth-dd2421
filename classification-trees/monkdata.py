@@ -1,5 +1,5 @@
 class Sample:
-    "Represenation of data samles"
+    "Represenation of data samples"
 
     def __init__(self, positive, values, identity):
         self.positive = positive
