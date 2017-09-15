@@ -4,6 +4,7 @@ from prettytable import PrettyTable
 import drawtree_qt5 as qt
 
 monks = [m.monk1, m.monk2, m.monk3]
+monks_test = [m.monk1test, m.monk2test, m.monk3test]
 
 ##---------------------------------------------------------
 # COMPUTE ENTROPY OF DATASETS (ASS 1)
@@ -43,11 +44,19 @@ def compute_gain():
 ##---------------------------------------------------------
 # BUILD DECISION TREES (ASS 5)
 ##---------------------------------------------------------
-def compute_subsets(dataset, attribute):
-  values = m.attributes[attribute].values
-  subsets = []
+def compute_trees_errors():
+  print ("Compute the train and test set errors for the full trees:")
 
-  for val in values:
-      subsets.append(dt.select(dataset, m.attributes[attribute], val))
+  err_table = PrettyTable(['Dataset', 'Error (train)', 'Error (test)'])
 
-  return subsets
+  for i in range(3):
+    l = ["MONK-{0}".format(i+1)]
+
+    t = dt.buildTree(monks[i], m.attributes)
+    l.append(1 - dt.check(t, monks[i]))
+    l.append(1 - dt.check(t, monks_test[i]))
+
+    err_table.add_row(l)
+
+  print(err_table)
+  print ()
