@@ -38,3 +38,7 @@
 |  MONK-3 | 0.00712087 | 0.29373617 | 0.00083111 | 0.00289182 | 0.25591172 | 0.00707703 |
 
 The attribute **a5** seems to perform very well both with training sets MONK-1 and MONK-3 and decently well with MONK-2.
+
+#### Assignment 4:
+> For splitting we choose the attribute that maximizes the information gain, Eq.3. Looking at Eq.3 how does the entropy of
+the subsets, *S<sub>k</sub>*, look like when the information gain is maximized? How can we motivate using the information gain as a heuristic for picking an attribute for splitting? Think about reduction in entropy after the split and what the entropy implies.
