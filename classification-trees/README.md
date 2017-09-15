@@ -50,7 +50,7 @@ the subsets, *S<sub>k</sub>*, look like when the information gain is maximized? 
 
 The entropy for a subset *S<sub>k</sub>* is lower when the information gain is maximized. This is true because the uncertainty (entropy) in the subset decreses the more information we obtain.
 
-By using the highest *information gain* we can select an attribute to operate a split so that the uncertainty in the subset decreases the most. This means that the newly create subsets are more "pure" and have a lower entropy. In this way we can move towards a limited numbers of subsets that contained better classified samples.
+By using the highest *information gain* we can select an attribute to operate a split so that the uncertainty in the subsets decreases the most. This means that the newly create subsets are more "pure" and have a lower entropy. In this way we can move towards a limited number of subsets that contained better classified samples.
 
 ---
 
