@@ -30,3 +30,11 @@
 ### 4. Information Gain
 #### Assignment 3:
 > Use the function `averageGain` (defined in `dtree.py`) to calculate the expected information gain corresponding to each of the six attributes. Note that the attributes are represented as instances of the class Attribute (defined in `monkdata.py`) which you can access via `m.attributes[0]`, ..., `m.attributes[5]`. Based on the results, which attribute should be used for splitting the examples at the root node?
+
+| Dataset |     a1     |     a2     |     a3     |     a4     |     a5     |     a6     |
+|---------|------------|------------|------------|------------|------------|------------|
+|  MONK-1 | 0.07527256 | 0.00583843 | 0.00470757 | 0.0263117  | 0.28703075 | 0.00075786 |
+|  MONK-2 | 0.00375618 | 0.0024585  | 0.00105615 | 0.01566425 | 0.01727718 | 0.00624762 |
+|  MONK-3 | 0.00712087 | 0.29373617 | 0.00083111 | 0.00289182 | 0.25591172 | 0.00707703 |
+
+The attribute **a5** seems to perform very well both with training sets MONK-1 and MONK-3 and decently well with MONK-2.
