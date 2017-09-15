@@ -42,3 +42,16 @@ The attribute **a5** seems to perform very well both with training sets MONK-1 a
 #### Assignment 4:
 > For splitting we choose the attribute that maximizes the information gain, Eq.3. Looking at Eq.3 how does the entropy of
 the subsets, *S<sub>k</sub>*, look like when the information gain is maximized? How can we motivate using the information gain as a heuristic for picking an attribute for splitting? Think about reduction in entropy after the split and what the entropy implies.
+
+---
+
+### 5. Building Decision Trees
+#### Assignment 5:
+> Build the full decision trees for all three Monk datasets using `buildTree`. Then, use the function `check` to measure the performance of the decision tree on both the training and test datasets. <br> For example to built a tree for `monk1` and compute the performance on the test data you could use
+```python
+import monkdata as m
+import dtree as d
+t = d.buildTree(m.monk1, m.attributes)
+print(d.check(t, m.monk1test))
+```
+> Compute the train and test set errors for the three Monk datasets for the full trees. Were your assumptions about the datasets correct? Explain the results you get for the training and test datasets.
