@@ -72,3 +72,5 @@ print(d.check(t, m.monk1test))
 |  MONK-3 |      0.0      | 0.05555555555555558 |
 
 The assumptions are incorrect: in fact the smallest error on the test set is obtained on MONK-3 while MONK-1 has the larger error. The error on the training set is zero and this is consistent with the fact that we are building full classification trees which are able to classify perfectly (but overfitting) the data. For this reason the error values obtained in the test sets are not really informative about the complexity of the datasets beacuse they are influenced so much from an overfitting model.
+
+Thedataset MONK-3 gives the smallest decision tree and the smallest error.
