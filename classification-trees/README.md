@@ -38,15 +38,19 @@ Examples of this phenomenon are an unbalanced die or an unfair coin.
 
 | Dataset |     a1     |     a2     |     a3     |     a4     |     a5     |     a6     |
 |---------|------------|------------|------------|------------|------------|------------|
-|  MONK-1 | 0.07527256 | 0.00583843 | 0.00470757 | 0.0263117  | 0.28703075 | 0.00075786 |
-|  MONK-2 | 0.00375618 | 0.0024585  | 0.00105615 | 0.01566425 | 0.01727718 | 0.00624762 |
-|  MONK-3 | 0.00712087 | 0.29373617 | 0.00083111 | 0.00289182 | 0.25591172 | 0.00707703 |
+|  MONK-1 | 0.07527256 | 0.00583843 | 0.00470757 | 0.0263117  | **0.28703075** | 0.00075786 |
+|  MONK-2 | 0.00375618 | 0.0024585  | 0.00105615 | 0.01566425 | **0.01727718** | 0.00624762 |
+|  MONK-3 | 0.00712087 | **0.29373617** | 0.00083111 | 0.00289182 | 0.25591172 | 0.00707703 |
 
-The attribute **a5** seems to perform very well both with training sets MONK-1 and MONK-3 and decently well with MONK-2.
+The attribute **a5** seems to perform very well both with training sets MONK-1 and MONK-2 while **a2** is better for MONK-3.
 
 #### Assignment 4:
 > For splitting we choose the attribute that maximizes the information gain, Eq.3. Looking at Eq.3 how does the entropy of
 the subsets, *S<sub>k</sub>*, look like when the information gain is maximized? How can we motivate using the information gain as a heuristic for picking an attribute for splitting? Think about reduction in entropy after the split and what the entropy implies.
+
+The entropy for a subset *S<sub>k</sub>* is lower when the information gain is maximized. This is true because the uncertainty (entropy) in the subset decreses the more information we obtain.
+
+By using the highest *information gain* we can select an attribute to operate a split so that the uncertainty in the subset decreases the most. This means that the newly create subsets are more "pure" and have a lower entropy. In this way we can move towards a limited numbers of subsets that contained better classified samples.
 
 ---
 
