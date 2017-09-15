@@ -1,7 +1,8 @@
-import monkdata as m
-import dtree as dt
-from prettytable import PrettyTable
+from prettytable import pt
 import drawtree_qt5 as qt
+import monkdata as m
+import random as rnd
+import dtree as dt
 
 monks = [m.monk1, m.monk2, m.monk3]
 monks_test = [m.monk1test, m.monk2test, m.monk3test]
@@ -12,7 +13,7 @@ monks_test = [m.monk1test, m.monk2test, m.monk3test]
 def compute_entropy():
   print ("Compute entropy of training datasets:")
 
-  ent_table = PrettyTable(['Dataset', 'Entropy'])
+  ent_table = pt(['Dataset', 'Entropy'])
 
   for i in range(3):
     l = ["MONK-{0}".format(i+1)]
@@ -29,7 +30,7 @@ def compute_entropy():
 def compute_gain():
   print ("Compute information gain of attributes in training datasets:")
 
-  ig_table = PrettyTable(['Dataset', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6'])
+  ig_table = pt(['Dataset', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6'])
 
   for i in range(3):
     l = ["MONK-{0}".format(i+1)]
@@ -47,7 +48,7 @@ def compute_gain():
 def compute_trees_errors():
   print ("Compute the train and test set errors for the full trees:")
 
-  err_table = PrettyTable(['Dataset', 'Error (train)', 'Error (test)'])
+  err_table = pt(['Dataset', 'Error (train)', 'Error (test)'])
 
   for i in range(3):
     l = ["MONK-{0}".format(i+1)]
@@ -60,3 +61,10 @@ def compute_trees_errors():
 
   print(err_table)
   print ()
+
+
+def partition(data, fraction):
+  ldata = list(data)
+  random.shuffle(ldata)
+  breakPoint = int(len(ldata) * fraction)
+  return ldata[:breakPoint], ldata[breakPoint:]
