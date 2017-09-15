@@ -75,6 +75,7 @@ The assumptions are incorrect: in fact the smallest error on the test set is obt
 
 Thedataset MONK-3 gives the smallest decision tree and the smallest error.
 
+---
 
 ### 6. Pruning
 #### Assignment 6:
