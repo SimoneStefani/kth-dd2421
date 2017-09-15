@@ -6,9 +6,10 @@
 #### Assignment 0:
 > Each one of the datasets has properties which makes them hard to learn. Motivate which of the three problems is most difficult for a decision tree algorithm to learn.
 
-* Dataset 1
+* Dataset 1 the concept behind involves *a1* and *a2* being related and thus it is hard to split on one of these attributes.
 * Dataset 2 is hard to learn because the true concept behind it involves the value of an attribute in respect to the value of another attribute. Hence the space cannot be split based on the value of a single attribute.
-* Dataset 3 contains a 5% noise in the training set
+* Dataset 3 contains a 5% noise in the training set and it has the smallest amount of training data.
+In general all the datasets have a small amount of training samples compared with test samples.
 
 ---
 
@@ -25,6 +26,10 @@
 #### Assignment 2: 
 > Explain entropy for a uniform distribution and a non-uniform distribution, present some example distributions with high and low entropy.
 
+Entropy is the measure of randomness of a process/variable.
+* The entropy in a **uniform distribution** (outcomes are equally probable) grows logaritmic in relation with the number of outcomes. Examples of this phenomenon are a perfect die or a fair coin.
+* The entropy in a **non-uniform distribution** (one of the values is more probable to occur than the others) is always less than or equal to log<sub>2</sub>(*n*). In fact if one of the values is more probable to occur than the others, an observation that this value occurs is less informative than if some less common outcome had occurred. Conversely, rarer events provide more information when observed.
+Examples of this phenomenon are an unbalanced die or an unfair coin.
 ---
 
 ### 4. Information Gain
