@@ -64,3 +64,11 @@ t = d.buildTree(m.monk1, m.attributes)
 print(d.check(t, m.monk1test))
 ```
 > Compute the train and test set errors for the three Monk datasets for the full trees. Were your assumptions about the datasets correct? Explain the results you get for the training and test datasets.
+
+| Dataset | Error (train) |     Error (test)    |
+|---------|---------------|---------------------|
+|  MONK-1 |      0.0      | 0.17129629629629628 |
+|  MONK-2 |      0.0      | 0.30787037037037035 |
+|  MONK-3 |      0.0      | 0.05555555555555558 |
+
+The assumptions are incorrect: in fact the smallest error on the test set is obtained on MONK-3 while MONK-1 has the larger error. The error on the training set is zero and this is consistent with the fact that we are building full classification trees which are able to classify perfectly (but overfitting) the data. For this reason the error values obtained in the test sets are not really informative about the complexity of the datasets beacuse they are influenced so much from an overfitting model.
