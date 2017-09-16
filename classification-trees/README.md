@@ -90,3 +90,9 @@ Usually classification trees have a high variance intended as the characteristic
 |---------|------------------------|-----------------------------|
 |  MONK-1 |  0.17129629629629628   |        0.134768518519       |
 |  MONK-3 |  0.05555555555555558   |            0.0475           |
+
+The smallest mean error is obtained with a partition at 0.8. From the table above is also possible to see the effect of pruning in a reduction of the mean error compared with the full tree.
+
+<p align="center"><img src="https://github.com/SimoneStefani/kth-dd2421/blob/master/classification-trees/assets/monk1_means.png"></p>
+<p align="center"><img src="https://github.com/SimoneStefani/kth-dd2421/blob/master/classification-trees/assets/monk3_means.png"></p>
+
