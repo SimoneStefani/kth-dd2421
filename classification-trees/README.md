@@ -73,13 +73,15 @@ print(d.check(t, m.monk1test))
 
 The assumptions are incorrect: in fact the smallest error on the test set is obtained on MONK-3 while MONK-1 has the larger error. The error on the training set is zero and this is consistent with the fact that we are building full classification trees which are able to classify perfectly (but overfitting) the data. For this reason the error values obtained in the test sets are not really informative about the complexity of the datasets beacuse they are influenced so much from an overfitting model.
 
-Thedataset MONK-3 gives the smallest decision tree and the smallest error.
+The dataset MONK-3 gives the smallest decision tree and the smallest error.
 
 ---
 
 ### 6. Pruning
 #### Assignment 6:
 > Explain pruning from a bias variance trade-off perspective.
+
+Usually classification trees have a high variance intended as the characteristic of a model that is overly-complex and tends to fit perfectly to a set of data at the expense of represnting correctly the rule(s) which generated the data. Consequently by pruning the tree (removing useless overfitting nodes/leaves) we can increase the bias and reduce the variance.
 
 #### Assignment 7:
 > Evaluate the effect pruning has on the test error for the `monk1` and `monk3` datasets, in particular determine the optimal partition into training and validation by optimizing the parameter `fraction`. Plot the classification error on the test sets as a function of the parameter `fraction` <span>&#8712;</span> {0.3, 0.4, 0.5, 0.6, 0.7, 0.8}. Note that the split of the data is random. We therefore need to compute the statistics over several runs of the split to be able to draw any conclusions. Reasonable statistics includes mean and a measure of the spread. Do remember to print axes labels, legends and data points as you will not pass without them.
