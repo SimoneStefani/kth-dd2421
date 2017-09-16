@@ -85,3 +85,8 @@ Usually classification trees have a high variance intended as the characteristic
 
 #### Assignment 7:
 > Evaluate the effect pruning has on the test error for the `monk1` and `monk3` datasets, in particular determine the optimal partition into training and validation by optimizing the parameter `fraction`. Plot the classification error on the test sets as a function of the parameter `fraction` <span>&#8712;</span> {0.3, 0.4, 0.5, 0.6, 0.7, 0.8}. Note that the split of the data is random. We therefore need to compute the statistics over several runs of the split to be able to draw any conclusions. Reasonable statistics includes mean and a measure of the spread. Do remember to print axes labels, legends and data points as you will not pass without them.
+
+| Dataset | Error on Complete Tree | Error on Pruned Tree (mean) |
+|---------|------------------------|-----------------------------|
+|  MONK-1 |  0.17129629629629628   |        0.134768518519       |
+|  MONK-3 |  0.05555555555555558   |            0.0475           |
