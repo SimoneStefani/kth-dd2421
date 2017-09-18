@@ -115,6 +115,13 @@ def evaluate_pruning():
   std1 = np.std(monk1_pruned, axis=1)
   std3 = np.std(monk3_pruned, axis=1)
 
+  stat_table = PrettyTable(['Dataset/Stat', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6'])
+  stat_table.add_row(np.concatenate((['MONK-1 - MEAN'], np.around(mean1, decimals=6)), axis=0))
+  stat_table.add_row(np.concatenate((['MONK-3 - MEAN'], np.around(mean3, decimals=6)), axis=0))
+  stat_table.add_row(np.concatenate((['MONK-1 - STDEV'], np.around(std1, decimals=6)), axis=0))
+  stat_table.add_row(np.concatenate((['MONK-1 - STDEV'], np.around(std3, decimals=6)), axis=0))
+  print(stat_table)
+
   complete_tree1 = dt.buildTree(m.monk1, m.attributes)
   complete_tree3 = dt.buildTree(m.monk3, m.attributes)
 
@@ -136,3 +143,4 @@ def evaluate_pruning():
   plt.ylabel("Means of Error")
   plt.legend(loc='upper right', frameon=False)
   plt.show()
+
