@@ -101,7 +101,13 @@ def classify():
     # - sigmoid_kernel
     kernel = poly_kernel
 
-    classA, classB = dt.noisy_circles_dataset()
+    # Specify dataset:
+    # - basic_dataset
+    # - linearly_separable_dataset
+    # - pure_moons_dataset
+    # - noisy_moons_dataset
+    # - noisy_circles_dataset
+    classA, classB = dt.noisy_moons_dataset()
     data = classA + classB
     random.shuffle(data)
     
