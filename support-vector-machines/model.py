@@ -1,6 +1,7 @@
 from cvxopt.solvers import qp
 from cvxopt.base import matrix
 import numpy as np, pylab as pl, random, math
+import datasets as dt
 
 
 # ================================================== #
@@ -10,7 +11,7 @@ import numpy as np, pylab as pl, random, math
 def linear_kernel(x, y):
     return np.dot(x, y) + 1
 
-def poly_kernel(x, y, p=2):
+def poly_kernel(x, y, p=3):
     return np.power((np.dot(x, y) + 1), p)
 
 def radial_kernel(x, y, sigma=2):
@@ -20,19 +21,6 @@ def radial_kernel(x, y, sigma=2):
 def sigmoid_kernel(x, y, k=0.1, delta=0):
     np.transpose(x)
     return np.tanh(k * np.dot(x, y) - delta)
-
-
-# ================================================== #
-# Generate Points with Normal Distribution
-# ================================================== #
-
-def generate_data():
-    classA = [(random.normalvariate(-1.5, 1), random.normalvariate(1.5, 1), 1.0) for i in range(10)] +\
-             [(random.normalvariate(1.5, 1), random.normalvariate(0.5, 1), 1.0) for i in range(10)]
-
-    classB = [(random.normalvariate(0.0, 0.5), random.normalvariate(-0.5, 0.5), -1.0) for i in range(10)]
-
-    return classA, classB
 
 
 # ================================================== #
@@ -113,7 +101,7 @@ def classify():
     # - sigmoid_kernel
     kernel = poly_kernel
 
-    classA, classB = generate_data()
+    classA, classB = dt.noisy_circles_dataset()
     data = classA + classB
     random.shuffle(data)
     
