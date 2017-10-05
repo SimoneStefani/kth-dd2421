@@ -17,6 +17,13 @@ The provided data, generated from the code in the text, is not linearly separabl
 By tweaking the dataset generator it is possible to obtain data in two linearly separable classes. Thi allow to use a linear kernel for the SVM even though such techique is not superior to other simpler classification methods.
 <p align="center"><img src="https://github.com/SimoneStefani/kth-dd2421/blob/master/support-vector-machines/assets/line_sep_dt.png"></p>
 
+#### 3. Kernel Parameters
+The parameters in the linear kernels allow to vary some characteristics and often to make the kernel adhere (or overfit) more or less to the datasets. In the polynomial kernel the parameter `p` changes the degree of the polynomial while `sigma` in the radial kernel define the smoothness of the curve. In the sigmoid kernel the parameter `k` changes the slope of the curve while `delta` is the y-intercept (this makes clearer why it is hard to classify points with the sigmoid).
+
+By varying some of these parameters whe can make the model fit more closely or more loosely the dataset. If we increase the `sigma` of the radial kernel, for example, we obtain a smoother curve and increase the bias of the model while decreasing the variance. On the other hand if we decrease `sigma` we obtain a classification that tends to be more "edgy" and overfit the data (hence increase variance).
+
+<p align="center"><img src="https://github.com/SimoneStefani/kth-dd2421/blob/master/support-vector-machines/assets/radial_animation.gif"></p>
+
 ### 7. Slack Implementation
 #### Assignments
 > 1. Explore the role of the parameter `C`. What happens for very large/small values?
