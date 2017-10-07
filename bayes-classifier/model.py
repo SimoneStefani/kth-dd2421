@@ -73,10 +73,12 @@ def classifyBayes(X, prior, mu, sigma):
     Nclasses,Ndims = np.shape(mu)
     logProb = np.zeros((Nclasses, Npts))
 
-    # TODO: fill in the code to compute the log posterior logProb!
-    # ==========================
-    
-    # ==========================
+    for jdx in range(Nclasses):
+        diff = X - mu[jdx] # Matrix  C x d with diffs between x - µ
+        lnSigma = - np.log(np.linalg.det(sigma[jdx])) / 2 # N vector
+        lnPrior = np.log(prior[jdx]) # N vector
+        for i in range(Npts):
+            logProb[jdx][i] = lnSigma - np.inner(diff[i]/np.diag(sigma[jdx]), diff[i]) / 2 + lnPrior
     
     # one possible way of finding max a-posteriori once
     # you have computed the log posterior
@@ -110,21 +112,16 @@ class BayesClassifier(object):
 
 X, labels = genBlobs(centers=5)
 mu, sigma = mlParams(X,labels)
-plotGaussian(X,labels,mu,sigma)
+#plotGaussian(X,labels,mu,sigma)
 
 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
+testClassifier(BayesClassifier(), dataset='iris', split=0.7)
 
-#testClassifier(BayesClassifier(), dataset='iris', split=0.7)
+testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
 
-
-
-#testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
-
-
-
-#plotBoundary(BayesClassifier(), dataset='iris',split=0.7)
+plotBoundary(BayesClassifier(), dataset='iris',split=0.7)
 
 
 # ## Boosting functions to implement
