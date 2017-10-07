@@ -26,7 +26,7 @@ def computePrior(labels, W=None):
 
     for jdx, c in enumerate(classes):
         idx = np.where(labels == c)[0]
-        prior[jdx] = len(idx) / len(labels)
+        prior[jdx] = np.sum(W[idx]) / np.sum(W[:])
 
     return prior
 
@@ -49,15 +49,15 @@ def mlParams(X, labels, W=None):
 
     for jdx, c in enumerate(classes):
         idx = np.where(labels == c)[0] # Vector of length C of indices for a given label class c
-        xlc = X[idx,:] # Matrix  C x d with samples in the class c
-        mu[jdx] = np.sum(xlc, axis=0) / len(idx) # Compute mean
+        xlc = X[idx,:] * W[idx] # Matrix  C x d with samples in the class c
+        mu[jdx] = np.sum(xlc, axis=0)/np.sum(W[idx]) # Compute mean
         
     for jdx, c in enumerate(classes):
         idx = np.where(labels == c)[0] # Vector of length C of indices for a given label class c
         xlc = X[idx, :] # Matrix  C x d with samples in the class c
         diff = xlc - mu[jdx] # Matrix  C x d with diffs between x - µ
-        diff = np.square(diff)
-        mean = np.sum(diff, axis=0) / len(idx)
+        diff = np.square(diff) * W[idx]
+        mean = np.sum(diff, axis=0) / np.sum(W[idx])
         sigma[jdx] = np.diag(mean) # Use diagonal matrix for Naive Bayes Classier
 
     return mu, sigma
@@ -117,11 +117,11 @@ mu, sigma = mlParams(X,labels)
 
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
-testClassifier(BayesClassifier(), dataset='iris', split=0.7)
+# testClassifier(BayesClassifier(), dataset='iris', split=0.7)
 
-testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
+# testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
 
-plotBoundary(BayesClassifier(), dataset='iris',split=0.7)
+# plotBoundary(BayesClassifier(), dataset='iris',split=0.7)
 
 
 # ## Boosting functions to implement
@@ -152,11 +152,22 @@ def trainBoost(base_classifier, X, labels, T=10):
         # do classification for each point
         vote = classifiers[-1].classify(X)
 
-        # TODO: Fill in the rest, construct the alphas etc.
-        # ==========================
-        
-        # alphas.append(alpha) # you will need to append the new alpha
-        # ==========================
+        classes = np.unique(labels)
+
+        # Compute error by classes to simplify operations
+        eps = 0   
+        for jdx in classes:
+            idx = np.where(vote == jdx)[0]
+            eps += np.sum(np.transpose(wCur[idx]) *  (1 - (jdx == labels[idx])))
+
+        alpha = (np.log(1 - eps) - np.log(eps)) / 2 # Compute new alpha
+        alphas.append(alpha) # you will need to append the new alpha
+
+        # Update weights
+        wOld = wCur
+        for i in range(Npts):
+            wCur[i] = wOld[i] * np.exp(alpha * (-1)**(vote[i]==labels[i]))
+        wCur = wCur / np.sum(wCur)
         
     return classifiers, alphas
 
@@ -175,11 +186,10 @@ def classifyBoost(X, classifiers, alphas, Nclasses):
     else:
         votes = np.zeros((Npts,Nclasses))
 
-        # TODO: implement classificiation when we have trained several classifiers!
-        # here we can do it by filling in the votes vector with weighted votes
-        # ==========================
-        
-        # ==========================
+        for i in range(Ncomps):
+            classified = classifiers[i].classify(X)
+            for j in range(Npts):
+                votes[j][classified[j]] += alphas[i]
 
         # one way to compute yPred after accumulating the votes
         return np.argmax(votes,axis=1)
@@ -211,15 +221,11 @@ class BoostClassifier(object):
 # Call the `testClassifier` and `plotBoundary` functions for this part.
 
 
-#testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris',split=0.7)
-
-
+testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='iris',split=0.7)
 
 #testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel',split=0.7)
 
-
-
-#plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris',split=0.7)
+plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris',split=0.7)
 
 
 # Now repeat the steps with a decision tree classifier.
