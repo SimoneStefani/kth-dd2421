@@ -1,21 +1,3 @@
-#!/usr/bin/python
-# coding: utf-8
-
-# # Lab 3: Bayes Classifier and Boosting
-
-# ## Jupyter notebooks
-# 
-# In this lab, you can use Jupyter <https://jupyter.org/> to get a nice layout of your code and plots in one document. However, you may also use Python as usual, without Jupyter.
-# 
-# If you have Python and pip, you can install Jupyter with `sudo pip install jupyter`. Otherwise you can follow the instruction on <http://jupyter.readthedocs.org/en/latest/install.html>.
-# 
-# And that is everything you need! Now use a terminal to go into the folder with the provided lab files. Then run `jupyter notebook` to start a session in that folder. Click `lab3.ipynb` in the browser window that appeared to start this very notebook. You should click on the cells in order and either press `ctrl+enter` or `run cell` in the toolbar above to evaluate all the expressions.
-
-# ## Import the libraries
-# 
-# In Jupyter, select the cell below and press `ctrl + enter` to import the needed libraries.
-# Check out `labfuns.py` if you are interested in the details.
-
 import numpy as np
 from scipy import misc
 from imp import reload
@@ -57,7 +39,7 @@ def computePrior(labels, W=None):
 def mlParams(X, labels, W=None):
     assert(X.shape[0]==labels.shape[0])
     Npts,Ndims = np.shape(X)
-    classes = np.unique(labels)
+    classes = np.unique(labels) # Returns the sorted unique elements of an array
     Nclasses = np.size(classes)
 
     if W is None:
@@ -66,10 +48,18 @@ def mlParams(X, labels, W=None):
     mu = np.zeros((Nclasses,Ndims))
     sigma = np.zeros((Nclasses,Ndims,Ndims))
 
-    # TODO: fill in the code to compute mu and sigma!
-    # ==========================
-    
-    # ==========================
+    for jdx, c in enumerate(classes):
+        idx = np.where(labels == c)[0] # Vector of length C of indices for a given label class c
+        xlc = X[idx,:] # Matrix  C x d with samples in the class c
+        mu[jdx] = np.sum(xlc, axis=0) / len(idx) # Compute mean
+        
+    for jdx, c in enumerate(classes):
+        idx = np.where(labels == c)[0] # Vector of length C of indices for a given label class c
+        xlc = X[idx, :] # Matrix  C x d with samples in the class c
+        diff = xlc - mu[jdx] # Matrix  C x d with diffs between x - µ
+        diff = np.square(diff)
+        mean = np.sum(diff, axis=0) / len(idx)
+        sigma[jdx] = np.diag(mean) # Use diagonal matrix for Naive Bayes Classier
 
     return mu, sigma
 
