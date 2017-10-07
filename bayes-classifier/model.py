@@ -24,10 +24,9 @@ def computePrior(labels, W=None):
 
     prior = np.zeros((Nclasses,1))
 
-    # TODO: compute the values of prior for each class!
-    # ==========================
-    
-    # ==========================
+    for jdx, c in enumerate(classes):
+        idx = np.where(labels == c)[0]
+        prior[jdx] = len(idx) / len(labels)
 
     return prior
 
