@@ -7,4 +7,4 @@ _This repository contains code written during the fall semester 2017 by Simone S
 __Laboratories__
 - [x] LAB1 - **Classification Trees**
 - [x] LAB2 - **Support Vector Machines**
-- [ ] LAB3
+- [x] LAB3 - **Bayesian Learning and Boosting**
