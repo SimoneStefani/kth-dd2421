@@ -50,3 +50,18 @@ The boundary is now more complex and fits better the underlying data (see fig ab
 > Can we make up for not using a more advanced model in the basic classifier (e.g. independent features) by using boosting?
 
 It is indeed possible to increase the accuracy of a weak classifier by means of boosting. However we should be able to run the weak classifier on partitions of the datasets with different distributions.
+
+
+### 7. Olivetti Dataset
+
+Classification of a point from the Olivetti dataset with **Boosted decision tree**:
+
+`Final mean classification accuracy  70.1 with standard deviation 7.05`
+
+
+Classification of a point from the Olivetti dataset with **Bayes classifier**:
+
+`Final mean classification accuracy  87.7 with standard deviation 3.03`
+
+<p align="center"><img src="https://github.com/SimoneStefani/kth-dd2421/blob/master/bayes-classifier/assets/olivetti_dectree.png"></p>
+
