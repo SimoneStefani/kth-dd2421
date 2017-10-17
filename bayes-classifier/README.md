@@ -52,7 +52,41 @@ The boundary is now more complex and fits better the underlying data (see fig ab
 It is indeed possible to increase the accuracy of a weak classifier by means of boosting. However we should be able to run the weak classifier on partitions of the datasets with different distributions.
 
 
-### 7. Olivetti Dataset
+### 6. Boosting of Decision Tree Classifier
+Decision Tree on *Iris* dataset without and with boosting:
+`Final mean classification accuracy  92.4 with standard deviation 3.71`
+`Final mean classification accuracy  94.6 with standard deviation 3.65`
+
+Decision Tree on *Vowels* dataset without and with boosting:
+`Final mean classification accuracy  64.1 with standard deviation 4`
+`Final mean classification accuracy  86.6 with standard deviation 3.02`
+
+> Is there any improvement in classification accuracy? Why/why not?
+
+Yes, the boosted version of the algorithm yield better results than the normal decision trees. A decision tree is a weak classifier and we get the biggest increase in accurancy on the Vowels dataset where data points are more mixed (DT generally have low bias and high variance).
+
+> Plot the decision boundary of the boosted classifier on *iris* and compare it with that of the basic. What differences do you notice? Is the boundary of the boosted version more complex?
+
+The boundary is indeed more "edgy" in the boosted version.
+
+> Can we make up for not using a more advanced model in the basic classifier (e.g. independent features) by using boosting?
+
+Yes, in certain cases (see above).
+
+### 7. Which classifier
+
+* **Outliers:** Naïve Bayes without boosting. Decision trees would tend to overfit the data and also a boosted Bayes classifier would give too much weight to the outliers.
+
+* **Irrelevant inputs: part of the feature space is irrelevant:** Decision Trees. They would tend to split ignore the irrelevant part of the feature space concentrating only on attributes with high information gain.
+
+* **Predictive power:** Naïve Bayes with boosting. It tends to yield the best performance on prediction.
+
+* **Mixed types of data: binary, categorical or continuous features, etc.:** Decision Trees are more flexible and work well both with quantitative and qualitative data while Bayes works better with continuous data. Probably using boosting would increase the accurancy.
+
+* **Scalability: the dimension of the data, D, is large or the number of instances, N, is large, or both:** Decision Trees. Bayes works well even with small datasets while decision trees gain in performance when the dataset is large.
+
+
+### 8. Olivetti Dataset
 
 Classification of a point from the Olivetti dataset with **Boosted decision tree**:
 
