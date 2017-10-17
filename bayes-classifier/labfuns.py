@@ -9,8 +9,8 @@ import random as rnd
 from sklearn.datasets.samples_generator import make_blobs
 from sklearn import decomposition, tree
 
-# import seaborn as sns
-# sns.set()
+import seaborn as sns
+sns.set()
 
 def plot_cov_ellipse(cov, pos, nstd=2, ax=None, **kwargs):
     """
